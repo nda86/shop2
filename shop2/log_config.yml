@@ -1,0 +1,40 @@
+version: 1
+
+disable_exsisteng_loggers: False
+
+formatters:
+  std_format:
+    format: "{asctime} - {module}.{funcName} - {levelname} - {message}"
+    style: "{"
+
+handlers:
+  command_debug_handler:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: std_format
+    filename: logs/command_debug.log
+
+  main_debug_handler:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: std_format
+    filename: logs/main_debug.log
+
+  unhandled_exception_handler:
+    class: logging.FileHandler
+    level: ERROR
+    formatter: std_format
+    filename: logs/unhandled_exception.log
+
+loggers:
+  main_debug_log:
+    level: DEBUG
+    handlers: [main_debug_handler]
+
+  command_debug_log:
+    level: DEBUG
+    handlers: [command_debug_handler]
+
+  unhandled_exception:
+    level: ERROR
+    handlers: [unhandled_exception_handler]
